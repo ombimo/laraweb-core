@@ -1,0 +1,34 @@
+{
+    "name": "ombimo/laraweb-core",
+    "description": "Core dari laraweb",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bimo Aji Pamungkas",
+            "email": "bimo.aji.92@gmail.com"
+        }
+    ],
+    "require": {
+        "artesaos/seotools": "^0.19",
+        "intervention/image": "^2.5",
+        "spatie/schema-org": "^3.0"
+    },
+    "autoload": {
+        "files" : [
+            "src/Helpers/Helpers.php"
+        ],
+        "psr-4": {
+            "Ombimo\\LarawebCore\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ombimo\\LarawebCore\\LarawebCoreServiceProvider"
+            ],
+            "aliases": {
+                "CoreWeb": "Ombimo\\LarawebCore\\Helpers\\Web"
+            }
+        }
+    }
+}
