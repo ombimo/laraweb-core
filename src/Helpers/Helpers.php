@@ -12,7 +12,7 @@ if (!function_exists ('url_page')) {
     }
 }
 
-if ( ! function_exists('get_thumbnail')) {
+if (!function_exists('get_thumbnail')) {
     function get_thumbnail($image, $maxWidth = 100, $maxHeight = 100, $default = 'images/no-photo.png')
     {
         $response = $default;
@@ -43,9 +43,12 @@ if ( ! function_exists('get_thumbnail')) {
 
             //cek jika thumbnail sudah ada
             if (Storage::disk('public')->exists($thumbnail)) {
-                return Storage::disk('public')->url($thumbnail);
-            }
 
+                $path = Storage::disk('public')->url($thumbnail);
+                $path = str_replace('\\', '/', $path);
+
+                return $path;
+            }
 
             $tempMemory = ini_get('memory_limit');
             ini_set('memory_limit', '512M');
@@ -71,6 +74,7 @@ if ( ! function_exists('get_thumbnail')) {
             $response = asset($default);
         }
 
+        $response = str_replace('\\', '/', $response);
         return $response;
     }
 }
