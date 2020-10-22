@@ -14,9 +14,12 @@ class PageController extends Controller
 {
     public function index($slug)
     {
-        $query = Page::where('slug', $slug)->with('segments.locale');
+        $query = Page::where('slug', $slug);
+
         if (config('laraweb.multilang')) {
-            $query = $query->with('locale');
+            $query = $query->with(['segments.locale', 'locale']);
+        } else {
+           $query = $query->with('segments');
         }
 
         $page = $query->first();
@@ -24,13 +27,24 @@ class PageController extends Controller
             abort(404);
         }
 
-        SEO::setTitle($page->locale_judul);
-        SEO::setCanonical(url_page($page->slug));
-        SEO::setDescription($page->locale_sinopsis);
+        if (config('laraweb.multilang')) {
+            SEO::setTitle($page->locale_judul);
+            SEO::setCanonical(url_page($page->slug));
+            SEO::setDescription($page->locale_sinopsis);
 
-        //breadcrumb
-        Breadcrumb::add($page->locale_judul, url_page($page->slug));
-        //$page->addView();
+            //breadcrumb
+            Breadcrumb::add($page->judul, url_page($page->slug));
+
+        } else {
+           SEO::setTitle($page->judul);
+            SEO::setCanonical(url_page($page->slug));
+            SEO::setDescription($page->sinopsis);
+
+            //breadcrumb
+            Breadcrumb::add($page->judul, url_page($page->slug));
+        }
+
+
 
         //set menu
         Web::setMenu('page.' . $page->slug);
