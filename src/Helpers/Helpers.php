@@ -12,6 +12,18 @@ if (!function_exists ('url_page')) {
     }
 }
 
+if (!function_exists('get_image')) {
+    function get_image($path, $default = 'images/no-photo.png') {
+        if (Storage::disk('public')->exists($path)) {
+            $path =  Storage::disk('public')->url($path);
+        } else {
+            $path =  asset($default);
+        }
+
+        return str_replace('\\', '/', $path);
+    }
+}
+
 if (!function_exists('get_thumbnail')) {
     function get_thumbnail($image, $maxWidth = 100, $maxHeight = 100, $default = 'images/no-photo.png')
     {
