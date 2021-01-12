@@ -38,6 +38,7 @@ class LarawebCoreServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/view' => resource_path('views'),
             __DIR__ . '/../config/laraweb.php' => config_path('laraweb.php'),
+            __DIR__ . '/../config/seo.php' => config_path('seo.php'),
         ]);
 
         if ($this->app->runningInConsole()) {
