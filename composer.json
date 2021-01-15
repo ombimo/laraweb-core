@@ -27,7 +27,8 @@
                 "Ombimo\\LarawebCore\\LarawebCoreServiceProvider"
             ],
             "aliases": {
-                "CoreWeb": "Ombimo\\LarawebCore\\Helpers\\Web"
+                "CoreWeb": "Ombimo\\LarawebCore\\Helpers\\Web",
+                "CoreAlert": "Ombimo\\LarawebCore\\Helpers\\Alert"
             }
         }
     }
