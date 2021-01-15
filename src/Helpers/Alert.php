@@ -18,6 +18,9 @@ class Alert
 
     public static function get()
     {
-        return view('_core.alert');
+        return view('_core.alert', [
+            'type' => self::$type,
+            'msg' => self::$msg,
+        ]);
     }
 }
