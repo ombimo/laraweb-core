@@ -2,25 +2,32 @@
 
 namespace Ombimo\LarawebCore\Helpers;
 
-use Spatie\SchemaOrg\Schema;
+use Illuminate\Support\Facades\Session;
+
 
 class Alert
 {
-    public static $type;
+    public static $type = '';
 
-    public static $msg;
+    public static $msg = '';
 
-    public static function set($type, $msg)
+    public static function set($type, $msg, $session = true)
     {
-        self::$type = $type;
-        self::$msg = $msg;
+        if ($session) {
+            Session::flash('laraweb_core.alert.type', $type);
+            Session::flash('laraweb_core.alert.msg', $msg);
+        } else {
+            self::$type = $type;
+            self::$msg = $msg;
+        }
+
     }
 
     public static function get()
     {
         return view('_core.alert', [
-            'type' => self::$type,
-            'msg' => self::$msg,
+            'type' => Session::get('laraweb_core.alert.type', self::$type),
+            'msg' => Session::get('laraweb_core.alert.msg', self::$msg),
         ]);
     }
 }
