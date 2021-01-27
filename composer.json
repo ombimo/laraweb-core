@@ -10,8 +10,7 @@
     ],
     "require": {
         "artesaos/seotools": "^0.19",
-        "intervention/image": "^2.5",
-        "spatie/schema-org": "^3.0"
+        "intervention/image": "^2.5"
     },
     "autoload": {
         "files" : [
@@ -28,7 +27,8 @@
             ],
             "aliases": {
                 "CoreWeb": "Ombimo\\LarawebCore\\Helpers\\Web",
-                "CoreAlert": "Ombimo\\LarawebCore\\Helpers\\Alert"
+                "CoreAlert": "Ombimo\\LarawebCore\\Helpers\\Alert",
+                "CoreBreadcrumb": "Ombimo\\LarawebCore\\Helpers\\Breadcrumb"
             }
         }
     }

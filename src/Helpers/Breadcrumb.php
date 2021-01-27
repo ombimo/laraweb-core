@@ -2,8 +2,6 @@
 
 namespace Ombimo\LarawebCore\Helpers;
 
-use Spatie\SchemaOrg\Schema;
-
 class Breadcrumb
 {
     public static $items = [];
@@ -24,18 +22,27 @@ class Breadcrumb
             return '';
         }
 
-        $breadcrumb = [];
+        $itemListElement = [];
 
         foreach (self::$items as $key => $item) {
-            $breadcrumb[] = Schema::listItem()
-                ->name($item['name'])
-                ->item($item['link'])
-                ->position($key + 1);
+            $itemListElement[] = [
+                '@type' => 'ListItem',
+                'position' => ($key + 1),
+                'name' => $item['name'],
+                'item' => $item['link'],
+            ];
         }
 
-        $schemaBreadcrumb = Schema::BreadcrumbList()->itemListElement($breadcrumb);
+        $breadcrumb = [
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => $itemListElement,
+        ];
 
-        return $schemaBreadcrumb->toScript();
+        $start = '<script type="application/ld+json">';
+        $end = '</script>';
+
+        return $start . json_encode($breadcrumb) . $end;
     }
 
     public static function count()

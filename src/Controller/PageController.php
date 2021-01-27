@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Ombimo\LarawebCore\Models\Page;
 use Illuminate\Support\Facades\View;
 use Artesaos\SEOTools\Facades\SEOMeta as SEO;
-use Ombimo\LarawebCore\Breadcrumb;
+use Ombimo\LarawebCore\Helpers\Breadcrumb;
 use Ombimo\LarawebCore\Helpers\Web;
 use Ombimo\LarawebCore\Segment;
 

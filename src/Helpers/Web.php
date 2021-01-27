@@ -29,21 +29,25 @@ class Web
 
     public static function getSocial($name = null, $default = null)
     {
-        if (self::$kontak == null) {
+        if ($name != null) {
+            if (self::$kontak === null) {
+                return $default;
+            }
+
+            $data = self::$kontak->where('is_social_media', 1)->where('name', $name)->first();
+            if ($data != null) {
+                return $data->value;
+            }
+
             return $default;
         }
 
-        if ($name == null) {
-            $data = self::$kontak->where('is_social_media', 1)->all();
-            return $data;
+        if (self::$kontak === null) {
+            return [];
         }
 
-        $data = self::$kontak->where('is_social_media', 1)->where('name', $name)->first();
-        if ($data != null) {
-            return $data->value;
-        }
-
-        return $default;
+        $data = self::$kontak->where('is_social_media', 1)->all();
+        return $data ?? [];
     }
 
     public static function isMenu($name, $class = 'active')

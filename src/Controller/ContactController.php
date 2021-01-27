@@ -5,7 +5,7 @@ namespace Ombimo\LarawebCore\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOMeta as SEO;
-use Ombimo\LarawebCore\Breadcrumb;
+use Ombimo\LarawebCore\Helpers\Breadcrumb;
 use Ombimo\LarawebCore\Helpers\Web;
 use Ombimo\LarawebCore\Models\Pesan;
 
