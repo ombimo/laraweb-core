@@ -2,9 +2,10 @@
 
 namespace Ombimo\LarawebCore\Controller;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOMeta as SEO;
+use Illuminate\Http\Request;
+use Ombimo\LarawebCore\Helpers\Alert;
 use Ombimo\LarawebCore\Helpers\Breadcrumb;
 use Ombimo\LarawebCore\Helpers\Web;
 use Ombimo\LarawebCore\Models\Pesan;
@@ -32,16 +33,11 @@ class ContactController extends Controller
         $pesan->no_telp = $request->input('no_telp');
         $pesan->subjek = $request->input('subjek');
         $pesan->isi = $request->input('isi');
+
         if ($pesan->save()) {
-            session()->flash('alert', [
-                'type' => 'alert-success',
-                'msg' => __('app.contact.sukses')
-            ]);
+            Alert::set('alert-success', __('app.contact.sukses'));
         } else {
-            session()->flash('alert', [
-                'type' => 'alert-danger',
-                'msg' => __('app.contact.gagal')
-            ]);
+            Alert::set('alert-danger', __('app.contact.gagal'));
             return redirect()->route('contact')->withInput();
         }
 
