@@ -5,7 +5,9 @@ namespace Ombimo\LarawebCore\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Ombimo\LarawebCore\Helpers\Web;
+use Ombimo\LarawebCore\Models\WebConfig;
 use Ombimo\LarawebCore\Models\WebKontak;
+use Ombimo\LarawebCore\Models\WebText;
 
 class Boot
 {
@@ -20,8 +22,8 @@ class Boot
     {
 
         Web::setKontak(WebKontak::get());
-        Web::setConfig(WebKontak::get());
-        Web::setText(WebKontak::get());
+        Web::setConfig(WebConfig::get());
+        Web::setText(WebText::get());
 
         return $next($request);
     }
