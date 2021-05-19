@@ -57,8 +57,11 @@ class Input
         return $dateDB;
     }
 
-    public static function cleanNumber($text)
+    public static function cleanNumber($text, $nullable = true)
     {
+        if ($text === null && $nullable) {
+            return $text;
+        }
         return preg_replace('/[^\d]/', '', $text);
     }
 }
