@@ -62,6 +62,8 @@ class Input
         if ($text === null && $nullable) {
             return $text;
         }
-        return preg_replace('/[^\d]/', '', $text);
+        $number = preg_replace('/[^\d]/', '', $text);
+
+        return ($number != 0 && $nullable && empty($number)) ? null : $number;
     }
 }
