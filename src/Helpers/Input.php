@@ -44,6 +44,15 @@ class Input
         return $model;
     }
 
+    public static function getSwitch($model, $request, $data)
+    {
+        foreach ($data as $key) {
+            $model->{$key} = $request->input($key, 0);
+        }
+
+        return $model;
+    }
+
     public static function dateToDB($date, $format, $default = null)
     {
         $dateDB = $default;
