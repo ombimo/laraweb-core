@@ -9,11 +9,11 @@
         }
     ],
     "require": {
-        "artesaos/seotools": "^0.19",
+        "artesaos/seotools": "^0.22",
         "intervention/image": "^2.5"
     },
     "autoload": {
-        "files" : [
+        "files": [
             "src/Helpers/Helpers.php"
         ],
         "psr-4": {
