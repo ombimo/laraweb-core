@@ -19,7 +19,7 @@ class SEO extends SEOTools
         $defaultHeight = config('seo.default_image.height');
         $defaultWidth = config('seo.default_image.width');
 
-        if (Storage::disk('public')->exists($path)) {
+        if (! empty($path) && Storage::disk('public')->exists($path)) {
             $dim = get_dimension($path);
             $publicPath = Storage::disk('public')->url($path);
             $publicPath = str_replace('\\', '/', $publicPath);
