@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "artesaos/seotools": "^0.22",
+        "artesaos/seotools": "^1.2",
         "intervention/image": "^2.5"
     },
     "autoload": {
@@ -27,6 +27,7 @@
             ],
             "aliases": {
                 "CoreWeb": "Ombimo\\LarawebCore\\Helpers\\Web",
+                "CoreSEO": "Ombimo\\LarawebCore\\Helpers\\SEO",
                 "CoreAlert": "Ombimo\\LarawebCore\\Helpers\\Alert",
                 "CoreBreadcrumb": "Ombimo\\LarawebCore\\Helpers\\Breadcrumb"
             }
